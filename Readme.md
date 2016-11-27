@@ -36,7 +36,6 @@ But reverse is also true , Sometimes child prints first due to race condition,
 To ensure parent prints first , we can use signal locking machanism.
 
 
-
 9. The string "End of program" will be printed when child process is not replaced by execvp()  call and when if and else macro condition will not be fulfilled.
 
 10. EXPLANATION of previous context
@@ -71,7 +70,7 @@ To ensure parent prints first , we can use signal locking machanism.
     // execvp("foo", m_args);
 ```
 
-11. significance is describled earlier
+11. Significance is describled earlier
 
 12. Run Sample5 while changing its command-line arguments in order to identify the bugs. The following assumes that the name of the executable is sample5.
 
