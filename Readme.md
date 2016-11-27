@@ -33,6 +33,29 @@ fork() function[System call defined in kernel] creates a new process. The return
 ps utility helps to determine pgid, ppid, pid , you can kill PID and many more ..
 for instance, kill [Running PID]
 
+######5.
+• A process is the basic unit of execution
+    ● it’s the unit of scheduling
+    ● it’s the dynamic (active) execution context (as opposed to a
+program, which is static)
+• A process is sometimes called a job or a task or a sequential
+process.
+• A sequential process is a program in execution; it defines the
+sequential, instruction-at-a-time execution of a program
+
+    Fork() system call to create a new process
+    •
+    int fork() does many things at once:
+      ● creates a new address space (called the child)
+      ● copies the parent’s address space into the child’s
+      ● starts a new thread of control in the child’s address space
+      ● parent and child are equivalent -- almost
+        – in parent, fork() returns a non-zero integer
+      – in child, fork() returns a zero.
+        – difference allows parent and child to distinguish
+    •
+    int fork() returns TWICE!
+
 ######6.
 Usually, parent prints first most of the time, though this may vary due to OS architecture
 
