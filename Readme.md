@@ -39,6 +39,36 @@ Usually, parent prints first most of the time, though this may vary due to OS ar
 But reverse is also true , Sometimes child prints first due to race condition,
 To ensure parent prints first , we can use signal locking machanism.
 
+######7.
+WIFEXITED(status)
+ returns true if the child terminated normally, that is, by calling exit(0) or whatever exit(35)
+
+ This exit status is trapped by wait(int* status) call via pointer
+
+    waitpid(-1, &status, 0);
+    equivalent to
+    wait(&status);
+
+```c
+    // ...
+    } else if (pid == 0) {
+        printf("I am child PID %ld\n", (long)getpid());
+        // insert an appropriate form of the exit() call here
+        exit(0);
+        // exit(35);
+    } else {
+        // insert an appropriate form of wait() call here
+        wait(&status);
+        printf("I am parent PID %d\n", getpid());
+        printf("Child [PID %d] exit code is %d\n", pid, WEXITSTATUS(status));
+    }
+```
+
+######8.
+
+The interaction between the exit() and wait() are complementary.
+Description earlier code snippet
+
 
 ######9.
 The string "End of program" will be printed when child process is not replaced by execvp()  call and when if and else macro condition will not be fulfilled.
