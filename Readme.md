@@ -28,8 +28,50 @@
   NB: In Windows fork() alternative CreateProcess()
 
 3. ps utility helps to determine pgid, ppid, pid , you can kill PID and many more ..
+for instance, kill [Running PID]
+
+6. Usually, parent prints first most of the time, though this may vary due to OS architecture
+
+But reverse is also true , Sometimes child prints first due to race condition,
+To ensure parent prints first , we can use signal locking machanism.
 
 
+
+9. The string "End of program" will be printed when child process is not replaced by execvp()  call and when if and else macro condition will not be fulfilled.
+
+10. EXPLANATION of previous context
+
+        In execl() wee have to specify FULL BINARY PATH location, and executable file should have proper executable permission
+
+        In execl("exe", argv[1], argv[2], argv[3],....,argv[N], NULL);
+        Here argv[1] is simply ignored
+
+        For that reason, Here "Lakers" strings is simply ignored
+        execl("/usr/bin/cal", "Lakers", "10", "1988", NULL);
+
+        On the other hand,
+
+        execvp() last letter 'p' stands for path, that means that binary should be in $PATH environmental variable whatever the location.
+        That's why we have used "cal" NOT "/bin/cal"
+
+``` c
+// ....
+
+    char* m_args[] = { "July 2050", "7", "2050", NULL };
+
+// #if 1
+#ifdef ULIMATRA
+    printf("Using execl()\n");
+    // execl("/usr/bin/cal", "" , "10", "1988", NULL);
+    execl("/usr/bin/cal", "Lakers", "10", "1988", NULL);
+#else
+    printf("Using execvp()\n");
+    // Only first execvp will execute, because this will replace child image
+    execvp("cal", m_args);
+    // execvp("foo", m_args);
+```
+
+11. significance is describled earlier
 
 12. Run Sample5 while changing its command-line arguments in order to identify the bugs. The following assumes that the name of the executable is sample5.
 
