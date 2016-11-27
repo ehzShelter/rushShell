@@ -33,6 +33,11 @@ fork() function[System call defined in kernel] creates a new process. The return
 ps utility helps to determine pgid, ppid, pid , you can kill PID and many more ..
 for instance, kill [Running PID]
 
+######4.
+> Diagram of two fork() calls
+
+![fork()](https://github.com/ehzShelter/rushShell/blob/master/two/DiagramtwoFork.jpg)
+
 ######5.
 • A process is the basic unit of execution
     ● it’s the unit of scheduling
